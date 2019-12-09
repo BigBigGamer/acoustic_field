@@ -8,9 +8,46 @@
 \newcommand{\D}[1]{D\qty[#1]}
 \input{text/titlepage}
 
-\paragraph{Цель работы:}
+\paragraph{Цель работы:} 
+Исследование пространственного распределения звукового поля источника, находящегося в однородной среде вблизи гладкой
+поверхности раздела воздух-вода.
 
 \section{Теоретическая часть}
+Рассмотрим отражение и преломление сферической волны на плоской границе раздела двух сред. Можно показать, что поле в
+точке $B$ будет суперпозицией полей двух ненаправленных источников - реального $O$, и мнимого $O'$, расположенного над поверхностью
+воды, и излучающего в противофазе реальному (см. рис.\ref{fig:scheme}).
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width =0.6\linewidth]{fig/scheme.pdf}
+	\caption{Расоложение излучателя $O$ и точки наблюдения $B$ по отношению к границе раздела}
+	\label{fig:scheme}
+\end{figure}
+Поле мнимого источника соответствует полю, отраженному от границы раздела двух сред. Тогда для амплитуды суммарного давления запишем:
+\begin{equation}
+	P = \frac{e^{ikR}}{R}-\frac{e^{ikR_1}}{R_1}, \quad R^2 = r^2+(z-z_0)^2, \quad R_1^2 = r^2+(z+z_0)^2
+	\label{eq:1}
+\end{equation}
+Модуль амплитуды давления в таком случае имеет вид:
+\begin{equation}
+	|P(h,R)| = \sqrt{ \frac{1}{R^2} + \frac{1}{R_1^2} - \frac{2}{R_1 R} \cos k \Delta R },\quad \Delta R = R-R_1,
+	\label{eq:2}
+\end{equation}
+где $k$ - волновое число. При достаточно большом удалении ($R\gg z_0$), а также выполнении условия зоны Фраунгофера
+$\frac{k z_0^2}{R_0}\ll 1$ можно свести выражения \eqref{eq:1} и \eqref{eq:2} к более простому виду:
+\begin{equation}
+	P = -\frac{2i}{R_0}\sin(k z_0 \cos \theta_1 )e^{ikR_0}
+	\label{eq:3}
+\end{equation}
+\begin{equation}
+	|P| = \frac{2}{R_0}|\sin (k z_0 \cos \theta_1)|
+	\label{eq:4}
+\end{equation}
+Характеристика направленности системы из излучателя и поверхности воды имеет вид \eqref{eq:5}.
+\begin{equation}
+	\mathcal{F} = 2 |\sin(k z_0 \cos \theta_1)|
+	\label{eq:5}
+\end{equation}
+
 
 \newpage
 \section{Экспериментальная часть}
@@ -114,19 +151,19 @@
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width =0.8\linewidth]{fig/task21}
+	\includegraphics[width =0.79\linewidth]{fig/task21}
 	\caption{Амплитуды максимумов и минимумов при продольном срезе, на глубине $h=1$ см}
 	\label{fig:task21}
 \end{figure}
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width =0.8\linewidth]{fig/task22}
+	\includegraphics[width =0.79\linewidth]{fig/task22}
 	\caption{Амплитуды при продольном срезе, на глубине $h=2.5$ см}
 	\label{fig:task22}
 \end{figure}
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width =0.8\linewidth]{fig/task23}
+	\includegraphics[width =0.79\linewidth]{fig/task23}
 	\caption{Амплитуды при продольном срезе, на глубине $h=4$ см}
 	\label{fig:task23}
 \end{figure}
@@ -139,21 +176,21 @@
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width =0.8\linewidth]{fig/task31}
+	\includegraphics[width =0.79\linewidth]{fig/task31}
 	\caption{Амплитуды при вертикальном срезе, на расстоянии $l=70$ см}
 	\label{fig:task31}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width =0.8\linewidth]{fig/task32}
+	\includegraphics[width =0.79\linewidth]{fig/task32}
 	\caption{Амплитуды при вертикальном срезе, на расстоянии $l=100$ см}
 	\label{fig:task32}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width =0.8\linewidth]{fig/task33}
+	\includegraphics[width =0.79\linewidth]{fig/task33}
 	\caption{Амплитуды при вертикальном срезе, на расстоянии $l=130$ см}
 	\label{fig:task33}
 \end{figure}
@@ -166,6 +203,10 @@
 мнимого источника.
 
 \subsection{Определение добротности пьезо-излучателя}
+
+Для определения добротности излучателя $Q$, была зафиксирована осциллограмма принимаемого сигнала, приведенная на рис.
+\ref{fig:Q1}. Как видно в начале и в конце наблюдаются искажения формы импульса, что связано с инертностью мембраны
+пьезо-излучателя. 
 
 \begin{figure}[h!]
 	\centering
@@ -180,9 +221,7 @@
 		\label{fig:Q2}
 	\end{minipage}
 \end{figure}
-Для определения добротности излучателя $Q$, была зафиксирована осциллограмма принимаемого сигнала, приведенная на рис.
-\ref{fig:Q1}. Как видно в начале и в конце наблюдаются искажения формы импульса, что связано с инертностью мембраны
-пьезо-излучателя. 
+
 Для определения добротности $Q$ воспользуемся формулой 
 \begin{equation}
 	Q = \pi N_e,
