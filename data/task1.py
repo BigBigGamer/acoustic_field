@@ -40,7 +40,7 @@ angle = np.append(angle,angle2)
 amp = amp1
 amp = np.append(amp,amp2)
 
-t_angles = np.linspace(-105,-75,300)
+t_angles = np.linspace(-105,-75,1000)
 
 plt.figure(figsize = (15,9))
 # plt.polar(angle1/180*np.pi,amp1)

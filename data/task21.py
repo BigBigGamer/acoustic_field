@@ -21,7 +21,7 @@ def pressure(l, h):
     # l - in cm
     h = h/100
     l = l/100
-    z0 = 0.036
+    z0 = 0.0335
     lmb = 1.5e-3
     k = 2*np.pi/lmb
     R = np.sqrt(l**2 + (h - z0)**2)
@@ -30,6 +30,13 @@ def pressure(l, h):
     P = np.sqrt( 1/R**2 + 1/R1**2 - 2/(R*R1)*np.cos(k*deltaR) )
     return P
 
+def approx_pressure(l, h):
+    z0 = 0.036
+    lmb = 1.5e-3
+    R0 = np.sqrt( l**2 + h**2 )
+    cos_theta1 = h/R0
+    p = 2/R0*( np.sin( 2*np.pi/lmb*z0*cos_theta1 ) )
+    return np.abs(p)
 
 datafile = 'data/data.xlsx'
 
@@ -50,24 +57,28 @@ l4 = parse_row(sh,7) + zero_length
 amp4 = parse_row(sh,8)/2
 amp4 /= np.amax(amp4)
 
-# l_th = np.linspace(20,80,300)
-# l_th = np.linspace(20,160,300)
-l_th = np.linspace(20,200,500)
+l_th = np.linspace(20,80,2000)
+l_th = np.linspace(20,160,2000)
+l_th_rare = np.linspace(20,80,100)
 
 # popt, pcov = sp.optimize.curve_fit(pressure, l1, amp1)
 # print(popt)
+h = 4
 
-pr_th = pressure(l_th, 1)
+pr_th = pressure(l_th, h)
+pr_th_appr = approx_pressure(l_th_rare, h)
 pr_th /= np.amax(pr_th)
+pr_th_appr /= np.amax(pr_th_appr)
 
-plt.figure(figsize = (15,9))
-plt.plot(l1, amp1,'ko-', label = 'h = 1 см')
-plt.plot(l_th, pr_th,'r-', label = 'Theory\nh = 1 см,\n z0 = 3.6 см')
+plt.figure(figsize = (17,8))
+plt.plot(l4, amp4,'ko-', label = 'h = {} см'.format(h))
+plt.plot(l_th, pr_th,'r-', label = 'Theory\nh = {} см,\n z0 = 3.35 см'.format(h))
+# plt.plot(l_th_rare, pr_th_appr,'b.', label = 'Approximate theory\nh = 2.5 см,\n z0 = 3.6 см')
 
 
 plt.grid(True)
 plt.legend()
 plt.xlabel('Растояние l, см')
 plt.ylabel('Амплитуда')
-# plt.savefig('fig/task23.png',dpi=500)
+plt.savefig('fig/task23.png', dpi=500, bbox_inches = 'tight')
 plt.show()
